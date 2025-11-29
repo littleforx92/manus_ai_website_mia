@@ -86,6 +86,17 @@
         transform: translateY(0);
     }
 
+    /* === NEW: Scroll Progress Bar === */
+    #scroll-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%; /* Controlled by JS */
+        height: 3px;
+        background-color: var(--color-accent);
+        z-index: 10000;
+    }
+
     /* * Page Layout & Structure
      * -----------------------
      */
@@ -183,6 +194,12 @@
         border-radius: 50%;
         margin-bottom: 1rem;
         box-shadow: var(--shadow);
+        /* NEW: Hover transformation for 3D effect */
+        transition: var(--transition);
+    }
+    .hero-photo-wrapper:hover {
+        transform: scale(1.03) translateY(-5px);
+        box-shadow: 0 15px 40px -10px rgba(10, 25, 47, 0.2);
     }
 
     .hero-photo {
@@ -191,6 +208,8 @@
         object-fit: cover;
         border-radius: 50%;
         border: 4px solid var(--color-white);
+        /* NEW: transition for smooth effect */
+        transition: var(--transition);
     }
 
     .hero .overline {
@@ -203,6 +222,13 @@
 
     .hero h1 {
       font-size: clamp(48px, 8vw, 80px);
+      /* NEW: Headline Visual Pop */
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+    .hero h1:hover {
+        color: var(--color-accent);
+        text-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
     }
 
     .hero h2 {
@@ -409,15 +435,17 @@
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
-      transition: var(--transition);
+      /* UPDATED: Hover interaction */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
       border: 1px solid #e9ecef;
       text-decoration: none;
       color: var(--color-text-light);
     }
 
     .card:hover {
-      transform: translateY(-7px);
-      box-shadow: var(--shadow);
+      /* UPDATED: More pronounced and elegant lift + subtle glow effect */
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 12px 25px -10px rgba(10, 25, 47, 0.15), 0 0 10px rgba(13, 110, 253, 0.2);
     }
     
     .card.clickable {
@@ -497,6 +525,10 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      /* ADDED for reliable vertical centering of content */
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
     }
     
     /* * Footer & Modal
@@ -603,6 +635,9 @@
 </head>
 <body>
 
+  <!-- NEW: Scroll Progress Bar -->
+  <div id="scroll-progress-bar"></div>
+
   <div class="layout">
     <!-- SIDE NAVIGATION (Desktop Only) -->
     <aside class="side-nav">
@@ -626,7 +661,7 @@
         <div class="hero-content">
           <div class="hero-photo-wrapper">
             <!-- EDITABLE: Hero Photo -->
-            <img src="images/hero smile.JPG" alt="Qihua Wang professional headshot" class="hero-photo" />
+            <img src="images/hero-smile.jpg" alt="Qihua Wang professional headshot" class="hero-photo" />
           </div>
           <div class="hero-text">
             <div class="overline">AI Adopter & Strategist</div>
@@ -654,7 +689,7 @@
         <p class="tagline">Strategy, technology and people — connecting the dots.</p>
 
         <div class="pro-stack">
-          <!-- Item 1: Consulting -->
+          <!-- Item 1: Consulting Excellence -->
           <div class="pro-item">
             <h3>Consulting Excellence</h3>
             <div class="meta">Oliver Wyman · France, UK, Belgium, Greece</div>
@@ -669,34 +704,44 @@
               </ul>
             </div>          
           </div>
-          <!-- Item 2: AI Leadership -->
+          
+          <!-- Item 2 (New Position, Updated Content): AI Leadership & Adoption -->
           <div class="pro-item">
-            <h3>AI Leadership</h3>
-            <div class="meta">Executive Vice President, Strategy & AI</div>
-            <p>Built and led the corporate AI & Strategy division, transforming the company's approach to technology-driven growth and strategic planning.</p>
+            <h3>AI Leadership & Adoption</h3>
+            <div class="meta">Founder and Head of AI Division · Lagardère</div>
+            <p>Founded and scaled the AI division from the ground up. My focus is the strategic drive of AI adoption, transforming business processes, and ensuring technology delivers measurable value and operational excellence across the enterprise.</p>
             <button class="more-toggle" aria-expanded="false">Read full scope</button>
             <div class="full-content">
-              <h4>AI (Division created in 2023)</h4>
               <ul>
-                <li><strong>AI Leadership:</strong> Founded and scaled the AI division, managing a multi-million dollar budget and building a high-performing team of business and technical experts.</li>
-                <li><strong>AI Strategy:</strong> Architected the group's AI vision and a roadmap of 50+ GenAI and Predictive AI use cases to drive business value.</li>
-                <li><strong>End-to-End AI Delivery:</strong> Directed the full lifecycle of AI solution development, from concept to global rollout. Scaled high-impact use cases and delivered over 20 proofs-of-concept.</li>
-                <li><strong>Global AI Adoption:</strong> Established a global AI Ambassador network to accelerate the adoption of key initiatives like dynamic pricing and space allocation.</li>
+                <li><strong>AI Leadership:</strong> Founded and scaled the AI division, managing a multi-million euro budget and building a high-performing team of business and technical experts.</li>
+                <li><strong>AI Strategy:</strong> Architected the group's AI vision and a roadmap of 60+ GenAI and Predictive AI use cases to drive business value.</li>
+                <li><strong>End-to-End AI Delivery:</strong> Directed the full lifecycle of AI solution development, from concept to global rollout. Scaled high-impact use cases and delivered over 20 high-potential POCs.</li>
+                <li><strong>Global AI Adoption:</strong> Established a global AI Ambassador network to accelerate the adoption of key central initiatives and identify local initiatives to scale.</li>
                 <li><strong>AI Acculturation:</strong> Deployed bespoke training programs across all levels to drive enterprise-wide adoption and optimize business processes.</li>
               </ul>
-              <h4 style="margin-top: 1rem;">Strategy</h4>
+            </div>
+          </div>
+          
+          <!-- Item 3 (Renamed Position, UPDATED CONTENT): Corporate Strategy Leadership -->
+          <div class="pro-item">
+            <h3>Corporate Strategy Leadership</h3>
+            <div class="meta">Global Head of Strategy · Lagardère</div>
+            <p>I directed the 5 years strategic planning, strategic projects and transformative deals & development projects. My focus was on driving the five-year strategic roadmap and building new business models for sustainable corporate growth.</p>
+            <button class="more-toggle" aria-expanded="false">Read full scope</button>
+            <div class="full-content">
               <ul>
-                <li><strong>Strategic Planning:</strong> Led the development and operationalization of the group’s five-year strategic plan.</li>
-                <li><strong>Strategic Projects & M&A:</strong> Directed high-stakes strategic projects, including transformative M&A, post-acquisition integration, and major business development initiatives.</li>
+                <li><strong>Strategic Planning:</strong> Led the development and operationalization of the group’s five-year strategic plan, aligning business units with core corporate goals.</li>
+                <li><strong>Transformative Deasl & Development Projects:</strong> Directed high-stakes strategic projects, including transformative deals scenario mapping and major business development initiatives.</li>
                 <li><strong>Strategic Operations:</strong> Spearheaded the design and implementation of key strategic initiatives, focusing on new business model innovation and forging major commercial partnerships.</li>
               </ul>
             </div>
           </div>
-          <!-- Item 3: Entrepreneur -->
+
+          <!-- Item 4: Entrepreneur -->
           <div class="pro-item">
-            <h3>Entrepreneur • Coach • Influencer</h3>
+            <h3>Entrepreneur • Coach • Thought Leader </h3>
             <div class="meta">Lighthouse Planet (灯塔星球) · Global community</div>
-            <p>In 2020, I launched Lighthouse Planet, a global community for Chinese professionals in tech and consulting. I have personally coached over 300 elite talents and built a network that now reaches 20,000+ Chinese elites working in top consulting firms and tech companies worldwide. As a coach and influencer on WeChat Public Account and Rednote, I write regularly about AI and strategy, with 100+ essays read by more than 1 million readers across Chinese platforms.</p>
+            <p>In 2020, I launched Lighthouse Planet, a global community for Chinese professionals in tech and consulting. I have personally coached over 300 elite talents and built a network that now reaches 20,000+ Chinese elites working in top consulting firms and tech companies worldwide. As a coach and thought leader on WeChat Public Account and Rednote, I write regularly about AI and strategy, with 100+ essays read by more than 1 million readers across Chinese platforms.</p>
             <div class="kpi-container">
                 <div class="kpi-item">
                     <div class="kpi-number">1M+</div>
@@ -712,7 +757,8 @@
                 </div>
             </div>
           </div>
-          <!-- Item 4: Education -->
+          
+          <!-- Item 5: Education -->
           <div class="pro-item">
             <h3>Global Education Foundation</h3>
             <p>A trilingual (English, French, Mandarin) education spanning three continents, providing a unique global perspective.</p>
@@ -798,54 +844,61 @@
       <section id="features" class="features-section fade-in-section">
         <h2 class="section-header">Features & Publications</h2>
         <div class="cards-grid">
-            <!-- Card 1: LinkedIn -->
-            <a href="https://www.linkedin.com/in/qihuawangthu/" target="_blank" rel="noopener noreferrer" class="card">
-                <img class="cover-image" src="images/panel.PNG" alt="LinkedIn Logo">
-                <h4>LinkedIn Articles</h4>
-                <p>I regularly share insights on AI, business strategy, and leadership. Follow me on LinkedIn for my latest articles and posts.</p>
-                <span class="read-more">View on LinkedIn &rarr;</span>
+            
+            <!-- 1. Adopt AI -->
+            <a href="#" target="_blank" rel="noopener noreferrer" class="card">
+                <img class="cover-image" src="images/AdoptAI.JPG" alt="AdoptAI Grand Palais Panel">
+                <h4>Speaker at Adopt AI Grand Palais Summit</h4>
+                <p>Panel discussion focused on leveraging AI and GenAI to augment execution, optimize business processes, and achieve next-level operational efficiency in large organizations.</p>
+                <span class="read-more">View Panel &rarr;</span>
             </a>
-            <!-- Card 2: Lumina Solution -->
+
+            <!-- 2. Lumina Solution -->
             <a href="https://www.linkedin.com/posts/artefact-global_lagard%C3%A8re-travel-retail-x-artefact-enhancing-activity-7313085334106308608-qe7G?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAdAbX4BTIQ6bQI5z7RxOwIyVR08ekqrPhU" target="_blank" rel="noopener noreferrer" class="card">
                 <img class="cover-image" src="images/lumina.png" alt="Lumina Solution">
                 <h4>Lumina GenAI Solution</h4>
                 <p>Deployment of Lumina, a generative AI tool designed to assist employees in responding better and faster to numerous annual tenders.</p>
                 <span class="read-more">View on LinkedIn &rarr;</span>
             </a>
-            <!-- Card 3: Hi! Paris Keynote -->
-            <a href="https://youtu.be/PXzGORIEhmQ" target="_blank" rel="noopener noreferrer" class="card">
-                <img class="cover-image" src="images/hi paris.jpg" alt="Keynote speech at Hi! Paris event">
-                <h4>Keynote Speech at Hi! Paris</h4>
-                <p>At the Hi! PARIS summit, a leading European event for AI and Data Science, I delivered the keynote, “Gen AI in Action: Real-World Insights and the Roadmap from Strategy to Impact.” My presentation was about bridging the gap between cutting-edge AI and practical corporate application, sharing real-world insights on navigating challenges and identifying key success factors for enterprise GenAI adoption.</p>
-                <span class="read-more">Watch Full Video &rarr;</span>
+            
+            <!-- 3. LinkedIn Articles -->
+            <a href="https://www.linkedin.com/in/qihuawangthu/" target="_blank" rel="noopener noreferrer" class="card">
+                <img class="cover-image" src="images/panel.PNG" alt="LinkedIn Logo">
+                <h4>LinkedIn Articles</h4>
+                <p>I regularly share insights on AI, business strategy, and leadership. Follow me on LinkedIn for my latest articles and posts.</p>
+                <span class="read-more">View on LinkedIn &rarr;</span>
             </a>
-            <!-- Card 4: Global Woman Leader -->
+
+            <!-- 4. HEC & Hi! Paris Keynotes -->
+            <a href="#" target="_blank" rel="noopener noreferrer" class="card">
+                <img class="cover-image" src="images/hi paris.jpg" alt="Keynote speech at HEC/Hi! Paris event">
+                <h4>Keynote Speeches at HEC & Hi! Paris</h4>
+                <p>Delivered multiple keynotes (2024 & 2025) on the practical path to corporate AI adoption, dissecting myths, and outlining hard truths for global executives.</p>
+                <span class="read-more">View Highlights / Watch Video &rarr;</span>
+            </a>
+            
+            <!-- 5. Global Woman Leader -->
             <a href="https://www.globalwomanleader.com/viewpoint/leaders-talk/leading-the-ai-adoption-in-travel-retail-a-conversation-with-an-industry-trailblazer-nwid-3159.html#google_vignette" target="_blank" rel="noopener noreferrer" class="card">
                 <img class="cover-image" src="images/magazine.jpg" alt="Global Woman Leader Magazine Logo">
                 <h4>Interview with Global Woman Leader</h4>
                 <p>An interview on reshaping travel retail with AI by analyzing consumer behavior and enhancing customer experiences.</p>
                 <span class="read-more">Read Article &rarr;</span>
             </a>
-            <!-- Card 5: WeChat -->
-            <div class="card clickable" id="wechat-card">
-                <img class="cover-image" src="images/melt.jpg" alt="images/wechat.jpg">
-                <h4>WeChat Public Account</h4>
-                <p>My public account, Lighthouse Planet (灯塔星球), features long-form essays in Chinese on career development and personal growth.</p>
-                <span class="read-more">Show QR Code &rarr;</span>
-            </div>
-            <!-- Card 6: TRBusiness -->
-            <a href="https://secure.viewer.zmags.com/publication/79141363#/79141363/64" target="_blank" rel="noopener noreferrer" class="card">
-                <img class="cover-image" src="images/robot.png" alt="TRBusiness Magazine Logo">
-                <h4>TRBusiness Magazine Interview</h4>
-                <p>Featured in TRBusiness magazine, discussing market trends and strategic growth in the travel retail sector.</p>
-                <span class="read-more">Read Feature &rarr;</span>
-            </a>
+            
+            <!-- 6. WeChat Public Account (Moved to Last) -->
+            <a href="#" id="wechat-card" target="_blank" rel="noopener noreferrer" class="card clickable">
+                <img class="cover-image" src="images/melt.jpg" alt="WeChat QR Code">
+                 <h4>WeChat Public Account</h4>
+                 <p>I publish long-form essays on AI, global strategy, and personal leadership that reach over 1 million Chinese elite readers globally.</p>
+                 <span class="read-more">Scan to Follow &rarr;</span>
+             </a>
+            
         </div>
       </section>
 
       <!-- CONTACT SECTION -->
       <section id="contact" class="contact-section fade-in-section">
-        <h2 class="section-header" style="justify-content: center;">Get In Touch</h2>
+        <h2 class="section-header">Get In Touch</h2>
         <p>
           I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out.
         </p>
@@ -867,7 +920,7 @@
     <div id="wechat-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <img src="images/wechat.jpg" alt="WeChat QR Code">
+            <img src="images/melt.jpg" alt="WeChat QR Code">
             <p>Scan to connect on WeChat</p>
         </div>
     </div>
@@ -875,6 +928,18 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // --- Scroll Progress Bar Logic ---
+      const progressBar = document.getElementById('scroll-progress-bar');
+      const updateProgressBar = () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+        progressBar.style.width = scrolled + '%';
+      };
+
+      window.addEventListener('scroll', updateProgressBar);
+      updateProgressBar(); // Initialize on load
+
       // --- Intersection Observer for active nav links ---
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('#main-nav a');
@@ -956,11 +1021,20 @@
         modal.style.display = "none";
       }
 
-      wechatCard.addEventListener('click', openModal);
+      // Open modal via card click
+      if (wechatCard) {
+          wechatCard.addEventListener('click', (e) => {
+              e.preventDefault();
+              openModal();
+          });
+      }
+
+      // Open modal via footer icon click
       wechatFooterIcon.addEventListener('click', (e) => {
           e.preventDefault();
           openModal();
       });
+      
       closeButton.addEventListener('click', closeModal);
 
       window.addEventListener('click', (event) => {
